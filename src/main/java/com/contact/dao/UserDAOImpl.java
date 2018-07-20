@@ -41,18 +41,33 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 	@Override
 	public void update(User u) {
 		// TODO Auto-generated method stub
+		String sql = "UPDATE `contactdb`.`user` SET name=:name, phone=:phone, email=:email, address=:address, role=:role, loginStatus=:loginStatus "
+				+ "WHERE userId=:userId";
+
+		Map m = new HashMap();
+		m.put("name", u.getName());
+		m.put("phone", u.getPhone());
+		m.put("email", u.getEmail());
+		m.put("address", u.getAddress());
+		m.put("role", u.getRole());
+		m.put("loginStatus", u.getLoginStatus());
+		m.put("userId", u.getUserId());
+
+		getNamedParameterJdbcTemplate().update(sql, m);
 
 	}
 
 	@Override
 	public void delete(User u) {
 		// TODO Auto-generated method stub
-
+		this.delete(u.getUserId());
 	}
 
 	@Override
 	public void delete(int userId) {
 		// TODO Auto-generated method stub
+		String sql = "DELETE FROM `contactdb`.`user` WHERE userId=? ";
+		getJdbcTemplate().update(sql, userId);
 
 	}
 

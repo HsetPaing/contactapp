@@ -7,26 +7,26 @@ import com.contact.config.SpringRootConfig;
 import com.contact.dao.UserDAO;
 import com.contact.domain.User;
 
-public class TestUserDAOSave {
+public class TsetUserDAOUpdate {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ApplicationContext context = new AnnotationConfigApplicationContext(SpringRootConfig.class);
 		UserDAO userDAO = context.getBean(UserDAO.class);
-		
-		//the user details will be take from user-reg-from
+
+		// the user details will be take from update user profile page
 		User u = new User();
-		u.setName("Mg Mg");
+		u.setName("Mg Mg Gyi");
 		u.setPhone("01231425");
-		u.setEmail("mgmg@gmail.com");
+		u.setEmail("mgmggyi@gmail.com");
 		u.setAddress("Pathein");
-		u.setLoginName("MgMg");
-		u.setPassword("mgmg");
 		u.setRole(1);//Admin Role
 		u.setLoginStatus(1);//Active
-		
-		userDAO.save(u);
-		System.out.println("-----USER SAVE----------------");
+		u.setUserId(2);		
+
+		userDAO.update(u);
+		System.out.println("-----USER UPDATE----------------");
+
 	}
 
 }

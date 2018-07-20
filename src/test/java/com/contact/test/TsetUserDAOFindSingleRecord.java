@@ -7,26 +7,24 @@ import com.contact.config.SpringRootConfig;
 import com.contact.dao.UserDAO;
 import com.contact.domain.User;
 
-public class TestUserDAOSave {
+public class TsetUserDAOFindSingleRecord {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ApplicationContext context = new AnnotationConfigApplicationContext(SpringRootConfig.class);
 		UserDAO userDAO = context.getBean(UserDAO.class);
-		
-		//the user details will be take from user-reg-from
-		User u = new User();
-		u.setName("Aung Kaung");
-		u.setPhone("01231425");
-		u.setEmail("Agkg@gmail.com");
-		u.setAddress("Pyay");
-		u.setLoginName("AgKg");
-		u.setPassword("agkg");
-		u.setRole(1);//Admin Role
-		u.setLoginStatus(1);//Active
-		
-		userDAO.save(u);
-		System.out.println("-----USER SAVE----------------");
+
+		User u = userDAO.findById(1);
+		// the user details will be take from delete user profile page
+		System.out.println("-----USER DETAIL BY USERID----------");
+		System.out.println(u.getName());
+		System.out.println(u.getPhone());
+		System.out.println(u.getEmail());
+		System.out.println(u.getAddress());
+		System.out.println(u.getLoginName());
+		System.out.println(u.getRole());
+		System.out.println(u.getLoginStatus());
+
 	}
 
 }

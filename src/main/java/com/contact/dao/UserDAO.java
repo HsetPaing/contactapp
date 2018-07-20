@@ -14,9 +14,9 @@ public interface UserDAO {
 	
 	public void delete(int userId);
 	
-	public void findById(int userId);
+	public User findById(int userId);
 	
-	public List<User> findAll(User u);
+	public List<User> findAll();
 	
-	public List<User> findbyPropertiy(String propName,Object proValue);
+	public List<User> findbyProperty(String propName,Object propValue);
 }

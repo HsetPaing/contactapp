@@ -14,7 +14,7 @@ public interface ContactService {
 	public void save(Contact c);
 	public void update(Contact c);
 	public void delete(int contactId);
-	public void delete(int[] contactIds);
+	public void delete(Integer[] contactIds);
 	
 	/**
 	 * This method returns all User Contact (user who is logged in).

@@ -13,13 +13,13 @@ public interface UserService {
 
 	public static final int LOGIN_STATUS_ACTIVE = 1;
 	public static final int LOGIN_STATUS_BLOCKED = 2;
+	
+	public static final int ROLE_ADMIN = 1;
+	public static final int ROLE_USER = 2;
 
 	/**
 	 * The method handle the user registration task.
-	 * 
-	 * @param u
-	 *            the new user
-	 *
+	 * @param u the new user
 	 */
 	public void regiseter(User u);
 

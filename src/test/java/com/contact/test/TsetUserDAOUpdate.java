@@ -22,7 +22,7 @@ public class TsetUserDAOUpdate {
 		u.setAddress("Pathein");
 		u.setRole(1);//Admin Role
 		u.setLoginStatus(1);//Active
-		u.setUserId(2);		
+		u.setUserId(3);		
 
 		userDAO.update(u);
 		System.out.println("-----USER UPDATE----------------");

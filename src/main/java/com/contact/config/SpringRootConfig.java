@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages={"com.contact.dao"})
+@ComponentScan(basePackages={"com.contact.dao","com.contact.service"})
 public class SpringRootConfig {
 	//TODO : SERvices , DAO, DataSoruce , Email sender or some other business layer beans	
 	@Bean

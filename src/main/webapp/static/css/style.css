@@ -1,0 +1,16 @@
+@charset "ISO-8859-1";
+body{
+	font-family: Arial;Helvetica;Geneva;sans-serif;
+	font-size: 18px;
+}
+h1{
+	color: red;
+}
+
+.error{
+	color: #FF00000;
+}
+
+.success{
+	color: #00000FF;
+}

@@ -31,5 +31,7 @@ public class ContactAppDispatcherServletInitializer extends AbstractAnnotationCo
 		super.onStartup(servletContext); // must present
 		//Configure global task here if required
 	}
+	
+	
 
 }

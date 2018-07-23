@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class TestController {
 
-	@RequestMapping(value="/test/hello",method=RequestMethod.GET)
+	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String hello() {
 		return "hello";
+	}
+	
+	@RequestMapping(value="/welcome",method=RequestMethod.GET)
+	public String welcome() {
+		return "dashboard_user";
 	}
 }

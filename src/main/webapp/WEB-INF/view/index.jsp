@@ -5,10 +5,11 @@
 <jsp:include page="common/header.jsp" />
 </head>
 <body>
+
 	<jsp:include page="common/navigation.jsp" />
 
 	<div>
-		<p>User Dashboard</p>
+		<p>Welcome</p>
 	</div>
 	<jsp:include page="common/footer.jsp" />
 </body>

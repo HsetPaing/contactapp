@@ -8,7 +8,7 @@
 	<jsp:include page="common/navigation.jsp" />
 
 	<div>
-		<p>User Dashboard</p>
+		<p>Admin Dashboard</p>
 	</div>
 	<jsp:include page="common/footer.jsp" />
 </body>

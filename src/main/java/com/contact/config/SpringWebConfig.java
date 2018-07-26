@@ -34,12 +34,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		vr.setPrefix("/WEB-INF/view/");
 		vr.setSuffix(".jsp");
 		return vr;
-	}
-	
-	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		// TODO Auto-generated method stub
-		configurer.enable();
 	}	
 
 }

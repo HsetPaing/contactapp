@@ -18,16 +18,42 @@
 				</button>
 				<a class="navbar-brand" href="#">Project name</a>
 			</div>
+			<spring:url value="/logout" var="url_logout"/>
+			
 			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Help</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Register</a></li>
-				</ul>
+				<c:if test="${sessionScope.userId==null}">
+					<%-- User is not yet logged in : guset menu --%>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Help</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Login</a></li>
+						<li><a href="#">Register</a></li>
+					</ul>
+				</c:if>
+				<c:if test="${sessionScope.userId!=null && sessionScope.role == 1}">
+					<%-- Admin is logged in : Admin menu --%>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">UserList</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="${url_logout}">Logout</a></li>
+					</ul>
+				</c:if>
+				<c:if test="${sessionScope.userId!=null && sessionScope.role == 2}">
+					<%-- General user is logged in : user menu --%>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">Add Contact</a></li>
+						<li><a href="#">Contact List</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="${url_logout}">Logout</a></li>
+					</ul>
+				</c:if>
 			</div>
 			<!-- /.nav-collapse -->
 		</div>

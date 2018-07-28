@@ -1,5 +1,7 @@
 package com.contact.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,14 +20,14 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping(value = "/")
+	@RequestMapping(value = {"/","index"})
 	public String index(Model model) {
 		model.addAttribute("command", new LoginCommon());
 		return "index";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String handleLogin(@ModelAttribute("command") LoginCommon cmd, Model m) {
+	public String handleLogin(@ModelAttribute("command") LoginCommon cmd, Model m, HttpSession session) {
 		try {
 			User loggedInUser = userService.login(cmd.getLoginName(), cmd.getPassword());
 			if (loggedInUser == null) {
@@ -35,10 +37,14 @@ public class UserController {
 				return "index";
 			} else {
 				// SUCCESS
-				//check the role and redirect to a appropriate dashboard
+				// check the role and redirect to a appropriate dashboard
 				if (loggedInUser.getRole() == userService.ROLE_ADMIN) {
+					// add admin detail in session (assign session to logged in user)
+					addUserInSession(loggedInUser, session);
 					return "redirect:admin/dashboard";
 				} else if (loggedInUser.getRole() == userService.ROLE_USER) {
+					// add user detail in session (assign session to logged in user)
+					addUserInSession(loggedInUser, session);
 					return "redirect:user/dashboard";
 				} else {
 					m.addAttribute("err", "Invalid User ROLE");
@@ -62,4 +68,17 @@ public class UserController {
 	public String adminDashboard() {
 		return "dashboard_admin";
 	}
+
+	@RequestMapping(value = "logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:index?act=lo";
+	}
+
+	private void addUserInSession(User u, HttpSession session) {
+		session.setAttribute("user", u);
+		session.setAttribute("userId", u.getUserId());
+		session.setAttribute("role", u.getRole());
+	}
+
 }

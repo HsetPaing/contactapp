@@ -16,8 +16,13 @@
 				<label class="control-label" for="inputWarning1">${err}</label>
 			</div>
 		</c:if>
+		<c:if test="${param.act eq 'lo'}">
+			<div class="form-group has-success has-feedback">
+				<label class="control-label" for="inputWarning1">Logout Successfully! Thanks for using contact application</label>
+			</div>
+		</c:if>
 		<spring:url var="url_login" value="/login" />
-		<form:form action="login" modelAttribute="command">
+		<form:form action="login" modelAttribute="command" method="post">
 			<div class="form-group">
 				<label for="loginName">Username</label>
 				<form:input path="loginName" class="form-control" id="loginName"

@@ -5,9 +5,7 @@
 <jsp:include page="common/header.jsp" />
 </head>
 <body>
-	<jsp:include page="common/navigation.jsp" />
-
-	<div>
+	<div class="container">
 		<p>User Dashboard</p>
 	</div>
 	<jsp:include page="common/footer.jsp" />

@@ -34,15 +34,15 @@ public class UserServiceImpl extends BaseDAO implements UserService {
 	@Override
 	public User login(String loginName, String password) throws UserBlockedException {
 		// TODO Auto-generated method stub
-		String sql = "SELECT userId,name,phone,email,address,role,loginStatus,loginName"
-				+ "FROM user WHERE loginName=:ln AND password=:pw";
+		String sql = "SELECT userId,name,phone,email,address,role,loginStatus,loginName "
+				+ " FROM user WHERE loginName=:ln AND password=:pw";
 
 		Map m = new HashMap();
 		m.put("ln", loginName);
 		m.put("pw", password);
 		try {
 			User user = getNamedParameterJdbcTemplate().queryForObject(sql, m, new UserRowMapper());
-			if (user.getLoginStatus() == UserService.LOGIN_STATUS_ACTIVE) {
+			if (user.getLoginStatus() == UserService.LOGIN_STATUS_BLOCKED) {
 				throw new UserBlockedException("Your accout has been blocked. Contact to admin.");
 			} else {
 				return user;

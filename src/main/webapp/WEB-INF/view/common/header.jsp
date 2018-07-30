@@ -19,10 +19,11 @@
 				<a class="navbar-brand" href="#">Project name</a>
 			</div>
 			<spring:url value="/logout" var="url_logout"/>
+			<spring:url value="/reg_form" var="url_reg" />
 			
 			<div id="navbar" class="collapse navbar-collapse">
 				<c:if test="${sessionScope.userId==null}">
-					<%-- User is not yet logged in : guset menu --%>
+					<%-- User is not yet logged in : guset menu --%>					
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#">Home</a></li>
 						<li><a href="#">About</a></li>
@@ -30,7 +31,7 @@
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#">Login</a></li>
-						<li><a href="#">Register</a></li>
+						<li><a href="${url_reg}">Register</a></li>
 					</ul>
 				</c:if>
 				<c:if test="${sessionScope.userId!=null && sessionScope.role == 1}">

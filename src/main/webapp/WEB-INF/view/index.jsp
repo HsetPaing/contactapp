@@ -21,6 +21,11 @@
 				<label class="control-label" for="inputWarning1">Logout Successfully! Thanks for using contact application</label>
 			</div>
 		</c:if>
+		<c:if test="${param.act eq 'reg'}">
+			<div class="form-group has-success has-feedback">
+				<label class="control-label" for="inputWarning1">User Registration Successfully! Please login</label>
+			</div>
+		</c:if>
 		<spring:url var="url_login" value="/login" />
 		<form:form action="login" modelAttribute="command" method="post">
 			<div class="form-group">

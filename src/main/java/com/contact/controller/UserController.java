@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.contact.common.LoginCommon;
+import com.contact.common.LoginCommand;
+import com.contact.common.UserCommand;
 import com.contact.domain.User;
 import com.contact.execption.UserBlockedException;
 import com.contact.service.UserService;
@@ -22,12 +23,12 @@ public class UserController {
 
 	@RequestMapping(value = {"/","index"})
 	public String index(Model model) {
-		model.addAttribute("command", new LoginCommon());
+		model.addAttribute("command", new LoginCommand());
 		return "index";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String handleLogin(@ModelAttribute("command") LoginCommon cmd, Model m, HttpSession session) {
+	public String handleLogin(@ModelAttribute("command") LoginCommand cmd, Model m, HttpSession session) {
 		try {
 			User loggedInUser = userService.login(cmd.getLoginName(), cmd.getPassword());
 			if (loggedInUser == null) {
@@ -67,6 +68,24 @@ public class UserController {
 	@RequestMapping(value = "admin/dashboard", method = RequestMethod.GET)
 	public String adminDashboard() {
 		return "dashboard_admin";
+	}
+	
+	@RequestMapping(value="/reg_form")
+	public String registrationForm(Model m) {
+		//TODO command
+		UserCommand cmd = new UserCommand();
+		m.addAttribute("command", cmd);
+		return "reg_form";
+	}
+	
+	@RequestMapping(value="/register")
+	public String register(@ModelAttribute("command") UserCommand cmd, Model m) {
+		//TODO command
+		User user = cmd.getUser();
+		user.setRole(userService.ROLE_USER);
+		user.setLoginStatus(userService.LOGIN_STATUS_ACTIVE);
+		userService.regiseter(user);		
+		return "redirect:index?act=reg";
 	}
 
 	@RequestMapping(value = "logout")

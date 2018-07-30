@@ -1,6 +1,6 @@
 package com.contact.common;
 
-public class LoginCommon {
+public class LoginCommand {
 	
 	private String loginName;
 	private String password;

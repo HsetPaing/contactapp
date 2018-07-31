@@ -3,6 +3,7 @@ package com.contact.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -81,11 +82,19 @@ public class UserController {
 	@RequestMapping(value="/register")
 	public String register(@ModelAttribute("command") UserCommand cmd, Model m) {
 		//TODO command
-		User user = cmd.getUser();
-		user.setRole(userService.ROLE_USER);
-		user.setLoginStatus(userService.LOGIN_STATUS_ACTIVE);
-		userService.regiseter(user);		
-		return "redirect:index?act=reg";
+		try {
+			User user = cmd.getUser();
+			user.setRole(userService.ROLE_USER);
+			user.setLoginStatus(userService.LOGIN_STATUS_ACTIVE);
+			userService.regiseter(user);		
+			return "redirect:index?act=reg";
+		} catch (DuplicateKeyException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			m.addAttribute("err", "LoginName is already registered. Please select another user");
+			return "reg_form";
+		}
+		
 	}
 
 	@RequestMapping(value = "logout")

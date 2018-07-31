@@ -27,6 +27,7 @@
 			</div>
 		</c:if>
 		<spring:url var="url_login" value="/login" />
+		<spring:url value="/reg_form" var="url_reg" />
 		<form:form action="login" modelAttribute="command" method="post">
 			<div class="form-group">
 				<label for="loginName">Username</label>
@@ -41,7 +42,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-default">Login</button>
-					<a href="#" class="btn btn-link">New User Registration</a>
+					<a href="${url_reg}" class="btn btn-link">New User Registration</a>
 				</div>
 			</div>
 		</form:form>

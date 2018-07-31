@@ -16,10 +16,11 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Project name</a>
+				<a class="navbar-brand" href="${url_index}">Project name</a>
 			</div>
 			<spring:url value="/logout" var="url_logout"/>
 			<spring:url value="/reg_form" var="url_reg" />
+			<spring:url value="/index" var="url_index" />
 			
 			<div id="navbar" class="collapse navbar-collapse">
 				<c:if test="${sessionScope.userId==null}">
@@ -30,7 +31,7 @@
 						<li><a href="#">Help</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Login</a></li>
+						<li><a href="${url_index}">Login</a></li>
 						<li><a href="${url_reg}">Register</a></li>
 					</ul>
 				</c:if>
@@ -46,9 +47,11 @@
 				</c:if>
 				<c:if test="${sessionScope.userId!=null && sessionScope.role == 2}">
 					<%-- General user is logged in : user menu --%>
+					<spring:url var="url_uhome" value="/user/dashboard" />
+					<spring:url var="url_cform" value="/user/contact_form" />
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Add Contact</a></li>
+						<li class="active"><a href="${url_uhome}">Home</a></li>
+						<li><a href="${url_cform}">Add Contact</a></li>
 						<li><a href="#">Contact List</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
